@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detail Informasi - AegisNet Security</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
+
+  <!-- Navbar -->
+  <nav class="border-b border-slate-800 bg-slate-900/80 backdrop-blur">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-xl font-bold tracking-wide text-white">
+        Aegis<span class="text-blue-500">Net</span> Security
+      </a>
+      <a href="index.html" class="text-sm text-slate-300 hover:text-blue-400 transition">&larr; Kembali ke Beranda</a>
+    </div>
+  </nav>
+
+  <!-- Konten Detail -->
+  <main class="max-w-3xl mx-auto px-6 py-16 flex-grow w-full">
+    <div id="detailContent" class="p-8 rounded-2xl bg-slate-900 border border-slate-800">
+      <!-- Render otomatis berdasarkan ?id= -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 bg-slate-900 py-6 text-center text-sm text-slate-400">
+    @Copyright by 24552011266_Azriel Muhamad Bintang_TIF RP 24E CNS
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get("id"));
+    const item = companyInfo.find(data => data.id === id);
+    const detailContainer = document.getElementById("detailContent");
+
+    if (item) {
+      detailContainer.innerHTML = `
+        <div class="flex flex-wrap gap-3 items-center mb-4">
+          <span class="text-xs font-semibold px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">${item.category}</span>
+          <span class="text-xs font-semibold px-3 py-1 rounded-full bg-slate-800 text-slate-300">Prioritas: ${item.risk_level}</span>
+          <span class="text-xs text-slate-500 ml-auto">Diperbarui: ${item.updated_at}</span>
+        </div>
+        <h1 class="text-3xl font-extrabold text-white mb-4">${item.title}</h1>
+        <p class="text-slate-300 leading-relaxed text-base mb-6">${item.description}</p>
+        <div class="pt-6 border-t border-slate-800 flex justify-between items-center">
+          <a href="index.html" class="px-5 py-2.5 rounded-lg border border-slate-700 hover:border-blue-500 text-sm font-medium transition">Kembali</a>
+          <a href="login.html" class="px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium transition">Ajukan Layanan (Login)</a>
+        </div>
+      `;
+    } else {
+      detailContainer.innerHTML = `
+        <h2 class="text-xl font-bold text-white">Informasi tidak ditemukan</h2>
+        <p class="text-slate-400 mt-2">Silakan pilih informasi melalui halaman utama.</p>
+        <a href="index.html" class="inline-block mt-4 px-4 py-2 bg-blue-600 rounded-lg text-sm">Ke Halaman Utama</a>
+      `;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AegisNet Security - Beranda</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
+
+  <!-- Navbar -->
+  <nav class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-xl font-bold tracking-wide text-white">
+        Aegis<span class="text-blue-500">Net</span> Security
+      </a>
+      <div class="space-x-4 text-sm font-medium">
+        <a href="index.html" class="text-blue-400">Beranda</a>
+        <a href="login.html" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white transition">Login</a>
+        <a href="register.html" class="px-4 py-2 rounded-lg border border-slate-700 hover:border-blue-500 text-slate-200 transition">Registrasi</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="max-w-6xl mx-auto px-6 py-16 text-center">
+    <span class="px-3 py-1 text-xs font-semibold uppercase tracking-wider bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-full">
+      Enterprise Cyber Defense
+    </span>
+    <h1 class="mt-4 text-4xl md:text-5xl font-extrabold text-white leading-tight">
+      Melindungi Infrastruktur Digital <br />dengan Standar Keamanan Modern
+    </h1>
+    <p class="mt-4 text-slate-400 max-w-2xl mx-auto">
+      AegisNet Security menyediakan layanan audit jaringan, pengujian penetrasi, dan pemantauan ancaman 24/7 untuk menjaga integritas sistem perusahaan Anda.
+    </p>
+  </header>
+
+  <!-- Kumpulan Informasi Perusahaan -->
+  <main class="max-w-6xl mx-auto px-6 pb-20 flex-grow w-full">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-2xl font-bold text-white">Informasi Layanan & Keamanan</h2>
+      <span class="text-sm text-slate-400">Klik kartu untuk melihat detail</span>
+    </div>
+
+    <div id="infoContainer" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Render otomatis dari js/data.js -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 bg-slate-900 py-6 text-center text-sm text-slate-400">
+    @Copyright by 24552011266_Azriel Muhamad Bintang_TIF RP 24E CNS
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script>
+    const container = document.getElementById("infoContainer");
+    companyInfo.forEach(item => {
+      const card = document.createElement("a");
+      card.href = `detail.html?id=${item.id}`;
+      card.className = "block p-6 rounded-xl bg-slate-900 border border-slate-800 hover:border-blue-500 transition group";
+      card.innerHTML = `
+        <div class="flex justify-between items-center mb-3">
+          <span class="text-xs font-semibold px-2.5 py-1 rounded bg-blue-500/10 text-blue-400">${item.category}</span>
+          <span class="text-xs text-slate-500">${item.updated_at}</span>
+        </div>
+        <h3 class="text-xl font-bold text-white group-hover:text-blue-400 transition">${item.title}</h3>
+        <p class="mt-2 text-sm text-slate-400 leading-relaxed">${item.summary}</p>
+        <div class="mt-4 text-sm font-medium text-blue-500 group-hover:translate-x-1 transition inline-block">
+          Baca selengkapnya &rarr;
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  </script>
+</body>
+</html>
